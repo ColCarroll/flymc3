@@ -4,6 +4,10 @@ A sample flask app with PyMC3
 
 ## Quick Start
 
+Add a settings.cfg in the top level:
+    
+    echo 'DEBUG = False' > settings.cfg
+
 Run the application:
 
     make run
