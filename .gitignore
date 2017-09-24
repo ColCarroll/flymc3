@@ -1,0 +1,8 @@
+.python-version
+venv/
+*.pyc
+*.egg-info/
+dist/
+settings.cfg
+*.log*
+*.swp

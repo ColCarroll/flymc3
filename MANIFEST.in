@@ -1,0 +1,2 @@
+recursive-include flymc3/templates *
+recursive-include flymc3/static *

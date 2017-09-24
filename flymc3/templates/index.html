@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>flymc3</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css">
+	<style type="text/css">
+		.bar rect {
+		  fill: steelblue;
+		}
+        .line {
+          fill: none;
+          stroke: #000;
+          stroke-width: 5px;
+          stroke-linejoin: round;
+          stroke-linecap: round;
+        }
+		.bar text {
+		  fill: #fff;
+		  font: 10px sans-serif;
+		}
+
+		body {
+			background-color: #FFFFFF;
+		}
+		.ui.menu .item img.logo {
+			margin-right: 1.5em;
+		}
+		.main.container {
+			margin-top: 7em;
+		}
+	</style>
+</head>
+
+<body>
+  <div class="ui fixed inverted menu">
+    <div class="ui container">
+      <a href="#" class="header item">
+        <img class="logo" src="{{ url_for('static', filename='assets/images/logo.png') }}">
+        FlyMC3
+      </a>
+    </div>
+  </div>
+
+  <div class="ui main text container">
+	<svg id="coinPlot" width="960" height="500"></svg>
+    <div class="ui labeled input">
+        <div class="ui label">Approx. Bins</div>
+        <input id="plotBins" type="number" min=1 max=1000 step=1 value=50></input>
+    </div>
+
+    <h1 class="ui header">Flipping Coins</h1>
+        <form class="ui form">
+            <div class=field>
+                <div class="label">Priors</div>
+                <div class="two fields">
+                    <div class="ui labeled input field">
+                        <div class="ui label">alpha</div>
+                        <input id="coinAlpha" type="number" min=0.01 step=1 value=5></input>
+                    </div>
+                    <div class="ui labeled input field">
+                        <div class="ui label">beta</div>
+                        <input id="coinBeta" type="number" min=0.01 step=1 value=5></input>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="label">Observed</div>
+                <div class="two fields">
+                    <div class="ui labeled input field">
+                        <div class="ui label">heads</div>
+                        <input id="coinHeads" type="number" min=0 step=1 value=30></input>
+                    </div>
+                    <div class="ui labeled input field">
+                        <div class="ui label">tails</div>
+                        <input id="coinTails" type="number" min=0 step=1 value=70></input>
+                    </div>
+                </div>
+            </div>
+            <div class=field>
+                <div class="label">PyMC3 Parameters</div>
+                <div class="ui labeled input field">
+                    <div class="ui label">draws</div>
+                    <input id="coinDraws" type="number" min=1 max=10000 step=1 value=500></input>
+                </div>
+            </div>
+        </form>
+    <button class="ui primary button" id="coinButton">Flip Coins!</button>
+  </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src='{{ url_for("static", filename="js/coins.js") }}'></script>
+</html>
