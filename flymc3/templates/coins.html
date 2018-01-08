@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+{% block body %}
+<svg id="coinPlot" width="960" height="500"></svg>
+<div class="ui labeled input">
+    <div class="ui label">Approx. Bins</div>
+    <input id="plotBins" type="number" min=1 max=1000 step=1 value=50></input>
+</div>
+
+<h1 class="ui header">Flipping Coins</h1>
+    <form class="ui form">
+        <div class=field>
+            <div class="label">Priors</div>
+            <div class="two fields">
+                <div class="ui labeled input field">
+                    <div class="ui label">alpha</div>
+                    <input id="coinAlpha" type="number" min=0.01 step=1 value=5></input>
+                </div>
+                <div class="ui labeled input field">
+                    <div class="ui label">beta</div>
+                    <input id="coinBeta" type="number" min=0.01 step=1 value=5></input>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="label">Observed</div>
+            <div class="two fields">
+                <div class="ui labeled input field">
+                    <div class="ui label">heads</div>
+                    <input id="coinHeads" type="number" min=0 step=1 value=30></input>
+                </div>
+                <div class="ui labeled input field">
+                    <div class="ui label">tails</div>
+                    <input id="coinTails" type="number" min=0 step=1 value=70></input>
+                </div>
+            </div>
+        </div>
+        <div class=field>
+            <div class="label">PyMC3 Parameters</div>
+            <div class="ui labeled input field">
+                <div class="ui label">draws</div>
+                <input id="coinDraws" type="number" min=1 max=10000 step=1 value=500></input>
+            </div>
+        </div>
+    </form>
+<button class="ui primary button" id="coinButton">Flip Coins!</button>
+</div>
+{% endblock %}
+{% block footer %}
+<script src='{{ url_for("static", filename="js/coins.js") }}'></script>
+{% endblock %}

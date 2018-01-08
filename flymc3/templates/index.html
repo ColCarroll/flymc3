@@ -36,7 +36,7 @@
 <body>
   <div class="ui fixed inverted menu">
     <div class="ui container">
-      <a href="#" class="header item">
+      <a href="/" class="header item">
         <img class="logo" src="{{ url_for('static', filename='assets/images/logo.png') }}">
         FlyMC3
       </a>
@@ -44,53 +44,29 @@
   </div>
 
   <div class="ui main text container">
-	<svg id="coinPlot" width="960" height="500"></svg>
-    <div class="ui labeled input">
-        <div class="ui label">Approx. Bins</div>
-        <input id="plotBins" type="number" min=1 max=1000 step=1 value=50></input>
-    </div>
-
-    <h1 class="ui header">Flipping Coins</h1>
-        <form class="ui form">
-            <div class=field>
-                <div class="label">Priors</div>
-                <div class="two fields">
-                    <div class="ui labeled input field">
-                        <div class="ui label">alpha</div>
-                        <input id="coinAlpha" type="number" min=0.01 step=1 value=5></input>
-                    </div>
-                    <div class="ui labeled input field">
-                        <div class="ui label">beta</div>
-                        <input id="coinBeta" type="number" min=0.01 step=1 value=5></input>
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <div class="label">Observed</div>
-                <div class="two fields">
-                    <div class="ui labeled input field">
-                        <div class="ui label">heads</div>
-                        <input id="coinHeads" type="number" min=0 step=1 value=30></input>
-                    </div>
-                    <div class="ui labeled input field">
-                        <div class="ui label">tails</div>
-                        <input id="coinTails" type="number" min=0 step=1 value=70></input>
-                    </div>
-                </div>
-            </div>
-            <div class=field>
-                <div class="label">PyMC3 Parameters</div>
-                <div class="ui labeled input field">
-                    <div class="ui label">draws</div>
-                    <input id="coinDraws" type="number" min=1 max=10000 step=1 value=500></input>
-                </div>
-            </div>
-        </form>
-    <button class="ui primary button" id="coinButton">Flip Coins!</button>
+      {% block body %}
+      <ul>
+          <li><a href='{{ url_for("coins") }}'>Coin Flipper</a></li>
+          <li><a href='{{ url_for("model") }}'>Define a model</a></li>
+      {% endblock %}
   </div>
 </body>
 
+<div id="footer">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://d3js.org/d3.v4.js"></script>
-<script src='{{ url_for("static", filename="js/coins.js") }}'></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['\\(','\\)'], ['\[','\]'] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
+{% block footer %}
+{% endblock %}
+</div>
 </html>
